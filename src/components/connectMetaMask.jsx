@@ -5,10 +5,10 @@ const ConnectMetaMask = () => {
     const { ethereum } = window;
     let onboardButton = useRef();
 
-    const [buttonText, setButtonText] = useState("")
+    const [buttonText, setButtonText] = useState("Connect to MetaMask")
 
     //Created check function to see if the MetaMask extension is installed
-    const isMetaMaskInstalled = async () => {
+    const isMetaMaskInstalled = () => {
         //Have to check the ethereum binding on the window object to see if it's installed
         if (ethereum.isMetaMask) {
             setButtonText("Connect to MetaMask")
