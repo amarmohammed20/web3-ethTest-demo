@@ -1,22 +1,37 @@
-import React, {useEffect} from 'react';
-import { useWeb3Context } from 'web3-react';
+import React, { useState, useRef } from 'react';
 
 const ConnectMetaMask = () => {
 
-    const context = useWeb3Context();
-    console.log(useWeb3Context)
+    const { ethereum } = window;
+    let onboardButton = useRef();
 
-    const onClick = () => {
-        context.setConnector("MetaMask");
+    const [buttonText, setButtonText] = useState("")
+
+    //Created check function to see if the MetaMask extension is installed
+    const isMetaMaskInstalled = async () => {
+        //Have to check the ethereum binding on the window object to see if it's installed
+        if (ethereum.isMetaMask) {
+            setButtonText("Connect to MetaMask")
+        } else {
+            setButtonText("MetaMask is not installed!")
+        }
+    };
+
+    const connectMetaMask = async () => {
+        isMetaMaskInstalled();
+        onboardButton.current.setAttribute("disabled", "disabled");
+        try {
+            // Will open the MetaMask UI
+            // You should disable this button while the request is pending!
+            await ethereum.request({ method: 'eth_requestAccounts' });
+        } catch (error) {
+            console.error(error);
+        }
     }
-
-    useEffect(() => {
-        context.setFirstValidConnector(['MetaMask', 'Infura'])
-      }, []);
 
     return (
         <div>
-            <button onClick={onClick}>Connect To MetaMask</button>
+            <button ref={onboardButton} onClick={connectMetaMask}>{buttonText}</button>
         </div>
     )
 }
