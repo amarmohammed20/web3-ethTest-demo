@@ -4,9 +4,12 @@
   "private": true,
   "dependencies": {
     "@metamask/detect-provider": "^1.2.0",
+    "@sushiswap/core": "^1.4.2",
+    "@sushiswap/sdk": "^5.0.0-canary.23",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
+    "@uniswap/sdk": "^3.0.3",
     "@web3-react/core": "^6.1.9",
     "ethereumjs-wallet": "^1.0.1",
     "ethers": "^5.4.2",
