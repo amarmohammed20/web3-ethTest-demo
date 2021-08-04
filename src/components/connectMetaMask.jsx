@@ -60,7 +60,6 @@ const ConnectMetaMask = () => {
         <div>
             <button ref={onboardButton} onClick={connectMetaMask}>{buttonText}</button>
             <div>
-                <p>The balance is stored here.</p>
                 <p>The address is {addr} with {balance} ETH</p>
                 <p>You are on {chain}.</p> 
             </div>
